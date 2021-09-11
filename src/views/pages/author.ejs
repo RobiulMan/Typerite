@@ -1,0 +1,146 @@
+<!-- head area start-->
+<%- include('./partials/head.ejs') %>
+    <!-- head area end -->
+    <!-- site header
+        ================================================== -->
+    <%- include('./partials/nav.ejs') %>
+        <!-- end s-header -->
+
+
+        <!-- site content
+        ================================================== -->
+        <div class="s-content content">
+            <main class="row content__page">
+                <div>
+
+                    <ul class="author">
+                        <li class="author__item">
+                            <a href="single-standard.html" class="author_avater">
+                                <img src="<%= author.profilePics %>" alt="">
+                            </a>
+                            <p class="author-name">
+                                Name: <strong>
+                                    <%= author.profile[0].name%>
+                                </strong>
+                            </p>
+                            <p class="author-title">
+                                Title: <strong>
+                                    <%= author.profile[0].title%>
+                                </strong>
+                            </p>
+                            <p class="author-bio">
+                                Bio: <strong>
+                                    <%= author.profile[0].bio%>
+                                </strong>
+                            </p>
+                            <p class="entry__tags" style="margin-top: 1em;">
+                                <span class="entry__tag-list">
+                                    <%if( author.profile[0].links.website){%>
+                                        <a class="cursor " href="<%= author.profile[0].links.website%>" id="likebtn"><i
+                                                class="fas fa-globe"></i>
+
+                                        </a>
+                                        <%}%>
+                                            <%if(author.profile[0].links.facebook){%>
+                                                <a class="cursor " href="<%= author.profile[0].links.facebook%>"
+                                                    id="likebtn"><i class="fab fa-facebook-f"></i>
+
+                                                </a>
+                                                <%}%>
+                                                    <%if(author.profile[0].links.twitter){%>
+                                                        <a class="cursor " href="<%= author.profile[0].links.twitter%>"
+                                                            id="likebtn"><i class="fab fa-twitter"></i>
+
+                                                        </a>
+                                                        <%}%>
+                                                            <%if(author.profile[0].links.github){%>
+                                                                <a class="cursor "
+                                                                    href="<%= author.profile[0].links.github%>"
+                                                                    id="likebtn"><i class="fab fa-github"></i>
+
+                                                                </a>
+                                                                <%}%>
+
+                                </span>
+                            </p>
+                        </li>
+
+                    </ul>
+                    <hr>
+                </div>
+
+
+
+            </main>
+            <div class="masonry-wrap">
+                <%if(author.profile[0].posts.length===0) {%>
+                    <p>Not any post are avalile</p>
+                    <%} else {%>
+                        <div class="masonry">
+                            <div class="grid-sizer"></div>
+
+                            <% for (let post of author.profile[0].posts) {%>
+                                <article class="masonry__brick entry format-standard animate-this">
+                                    <div class="entry__thumb">
+                                        <a href="/post-view/<%= post._id %> " class="entry__thumb-link">
+                                            <% if(!post.thumbnail) {%>
+                                                <img src="images/thumbs/thumbnail-placeholder600.png"
+                                                    alt="post thumbnail">
+
+                                                <% } else{%>
+                                                    <img src="<%= post.thumbnail %>" srcset="" alt="" />
+                                                    <% } %>
+                                        </a>
+                                    </div>
+
+                                    <div class="entry__text">
+                                        <div class="entry__header">
+                                            <h2 class="entry__title">
+                                                <a href="/post-view/<%= post._id %> ">
+                                                    <%= post.title %>
+                                                </a>
+                                            </h2>
+                                            <div class="entry__meta">
+                                                <span class="entry__meta-cat">
+                                                    <% post.tags.forEach(item=> { %>
+                                                        <a href="single-standard.html">
+                                                            <%= item %>
+                                                        </a>
+                                                        <% }) %>
+                                                </span>
+                                                <span class="entry__meta-date">
+                                                    <a href="single-standard.html">
+                                                        <%= moment(post.createdAt)%>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="entry__excerpt">
+                                            <p>
+                                                <%= truncate(post.body) %>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </article>
+                                <!-- end article -->
+
+                                <% } %>
+
+
+
+
+
+
+                        </div>
+                        <%}%>
+                            <!-- end masonry -->
+            </div>
+
+        </div> <!-- end s-content -->
+
+
+
+        <!-- footer   ================================================== -->
+        <%- include('./partials/footer.ejs') %>
+            <!-- footer end -->

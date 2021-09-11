@@ -1,0 +1,123 @@
+<!-- head area start-->
+<%- include('./partials/head.ejs') %>
+    <!-- head area end -->
+    <!-- site header
+        ================================================== -->
+    <%- include('./partials/nav.ejs') %>
+        <!-- end s-header -->
+
+        <div class="s-content">
+
+            <h5>HEALTH </h5>
+
+            <div class="masonry-wrap">
+                <%if(posts.length===0) {%>
+                    <p>No Post are avalile in this category</p>
+                    <%} else {%>
+                        <div class="masonry">
+                            <div class="grid-sizer"></div>
+
+                            <% for (let post of posts.reverse()) {%>
+                                <article class="masonry__brick entry format-standard animate-this">
+                                    <div class="entry__thumb">
+                                        <a href="/post-view/<%= post._id %> " class="entry__thumb-link">
+                                            <% if(!post.thumbnail) {%>
+                                                <img src="images/thumbs/thumbnail-placeholder600.png"
+                                                    alt="post thumbnail">
+
+                                                <% } else{%>
+                                                    <img src="<%= post.thumbnail %>" srcset="" alt="" />
+                                                    <% } %>
+                                        </a>
+                                    </div>
+
+                                    <div class="entry__text">
+                                        <div class="entry__header">
+                                            <h2 class="entry__title">
+                                                <a href="/post-view/<%= post._id %> ">
+                                                    <%= post.title %>
+                                                </a>
+                                            </h2>
+                                            <div class="entry__meta">
+                                                <span class="entry__meta-cat">
+                                                    <% post.tags.forEach(item=> { %>
+                                                        <a href="single-standard.html">
+                                                            <%= item %>
+                                                        </a>
+                                                        <% }) %>
+                                                </span>
+                                                <span class="entry__meta-date">
+                                                    <a href="single-standard.html">
+                                                        <%= moment(post.createdAt)%>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="entry__excerpt">
+                                            <p>
+                                                <%= truncate(post.body) %>
+                                            </p>
+                                            <% if(user) { %>
+                                                <p class="entry__tags" style="margin-top: 1em;">
+                                                    <span class="entry__tag-list">
+
+                                                        <% if(bookmarks.includes(post._id)) { %>
+                                                            <a class="bookmark-btn active" data-post="<%= post._id%>">
+                                                                <i class="far fa-bookmark"></i>
+                                                            </a>
+                                                            <% }else{ %>
+                                                                <a class="bookmark-btn" data-post="<%= post._id%>">
+                                                                    <i class="far fa-bookmark"></i>
+                                                                </a>
+                                                                <% } %>
+
+                                                    </span>
+                                                </p>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                </article>
+                                <!-- end article -->
+
+                                <% } %>
+
+
+
+
+
+
+                        </div>
+                        <%}%>
+                            <!-- end masonry -->
+            </div>
+            <!-- end masonry-wrap -->
+            <% if(totalPage > 1) { %>
+                <div class="row">
+                  <div class="column large-full">
+                    <nav class="pgn">
+                      <ul>
+                        <li><a class="pgn__prev <%= currentPage === 1 ? 'disabled': ''%>"
+                            href="<%= `/categories/health?page=${currentPage - 1}`%>">Prev</a></li>
+                        <% for(let i=1; i <=totalPage; i++) {%>
+                          <li><a class="pgn__num <%= currentPage === i ? 'current': ''%>" href="
+                              <%=`/categories/health?page=${i}`%>">
+                              <%=i%>
+                            </a></li>
+        
+                          <% } %>
+                            <li><a class="pgn__next <%= currentPage === totalPage ? 'disabled': ''%>"
+                                href="<%= `/categories/health?page=${currentPage + 1}`%>">Next</a>
+                            </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+            </div>
+            <% } %>
+        
+            <!-- end s-content -->
+
+            <!-- footer
+        ================================================== -->
+            <%- include('./partials/footer.ejs') %>
+                <!-- footer end -->

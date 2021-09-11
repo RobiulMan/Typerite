@@ -1,0 +1,65 @@
+<!-- head area start-->
+<%- include('./partials/head.ejs') %>
+    <!-- head area end -->
+    <%- include('../partials/dashbord-nav.ejs') %>
+        <!-- end s-header -->
+
+        <div class="s-content">
+            <%- include('../partials/custom-alert.ejs') %>
+
+                <div class="masonry-wrap">
+                    <h1>List of bookmarks</h1>
+                    <div class="masonry">
+
+                        <div class="grid-sizer"></div>
+                        <% if(posts.length===0) {%>
+                            <p>did not post any bookmarks</p>
+                            <%} else{%>
+
+                                <% for (let post of posts) {%>
+                                    <article class="masonry__brick entry format-standard animate-this">
+                                        <div class="entry__thumb">
+                                            <a href="/post-view/<%= post._id %> " class="entry__thumb-link">
+                                                <% if(!post.thumbnail) {%>
+                                                    <img src="images/thumbs/thumbnail-placeholder600.png"
+                                                        alt="post thumbnail">
+
+                                                    <% } else{%>
+                                                        <img src="<%= post.thumbnail %>" srcset="" alt="" />
+                                                        <% } %>
+                                            </a>
+                                        </div>
+
+                                        <div class="entry__text">
+                                            <div class="entry__header">
+                                                <h2 class="entry__title">
+                                                    <a href="/post-view/<%= post._id %> ">
+                                                        <%= post.title %>
+                                                    </a>
+                                                </h2>
+
+                                            </div>
+
+                                        </div>
+                                    </article>
+                                    <!-- end article -->
+
+                                    <% } %>
+
+                                        <%}%>
+
+
+
+
+                    </div>
+                    <!-- end masonry -->
+                </div>
+                <!-- end masonry-wrap -->
+
+
+                <!-- end s-content -->
+
+                <!-- footer
+        ================================================== -->
+                <%- include('./partials/footer.ejs') %>
+                    <!-- footer end -->

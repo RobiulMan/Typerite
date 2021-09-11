@@ -1,0 +1,114 @@
+<!-- head area start-->
+<%- include('../views/partials/head.ejs') %>
+    <!-- head area end -->
+
+    <%- include('../partials/dashbord-nav.ejs') %>
+        <!-- end s-header -->
+
+        <div class="s-content">
+            <%- include('../partials/custom-alert.ejs') %>
+
+                <div class="masonry-wrap">
+                    <!-- start masonry-wrap -->
+                    <div class="blog-post">
+                        <h1 class="h2">Add New Post
+                        </h1>
+                    </div>
+
+                    <div class="masonry">
+                        <!-- start masonry -->
+
+                        <div class="grid-sizer" style="width: 100%;">
+
+                            <div class="post">
+
+                                <form action="/addpost" method="POST" enctype="multipart/form-data">
+                                    <div class="write">
+                                        <input type="text" name="title" id="post-title"
+                                            value="<%= value.title? value.title: ''%>"
+                                            class="post-title <%= error.title ? 'is-invalid': ''%> "
+                                            placeholder="Post Title">
+                                        <label for="" class="invalide-feedback">
+                                            <%= error.title %>
+                                        </label>
+                                        <textarea class="body-text <%= error.body ? 'is-invalid': ''%>" name="body"
+                                            id="postarea">
+                                            <%- value.body? value.body: ''%>
+                                        </textarea>
+                                        <label for="" class="invalide-feedback ">
+                                            <%= error.body %>
+                                        </label>
+                                        <div class="thumbnail">
+                                            <input type="file" name="post-thumbnail" id="file" class="inputfile" />
+                                            <label class="uploadfile" for="file"><i class="fas fa-image"
+                                                    style="margin-right: .2em;"></i>Choose a
+                                                thumbnail</label>
+                                        </div>
+                                        <input type="submit" value="Publish" placeholder="Publish">
+                                    </div>
+
+                                    <div class="side-bar">
+                                        <div class="categories">
+                                            <p>Categories</p>
+                                            <hr>
+                                            <div class="list-group">
+
+                                                <div class="item">
+                                                    <input type="checkbox" class="check" name="tags" id="category1"
+                                                        value="LIFESTYLE" checked="">
+                                                    <label class="custom-control-label"
+                                                        for="category1">LIFESTYLE</label>
+                                                </div>
+                                                <div class="item">
+                                                    <input type="checkbox" class="check" name="tags" id="category2"
+                                                        value="HEALTH">
+                                                    <label class="custom-control-label" for="category2">HEALTH</label>
+                                                </div>
+                                                <div class="item">
+                                                    <input type="checkbox" class="check" name="tags" id="FAMILY"
+                                                        value="FAMILY">
+                                                    <label class="custom-control-label" for="FAMILY">FAMILY</label>
+                                                </div>
+                                                <div class="item">
+                                                    <input type="checkbox" class="check" name="tags" id="MANAGMENT"
+                                                        value="MANAGMENT">
+                                                    <label class="custom-control-label"
+                                                        for="MANAGMENT">MANAGMENT</label>
+                                                </div>
+                                                <div class="item">
+                                                    <input type="checkbox" class="check" name="tags" id="TRAVEL"
+                                                        value="TRAVEL">
+                                                    <label class="custom-control-label" for="TRAVEL">TRAVEL</label>
+                                                </div>
+                                                <div class="item">
+                                                    <input type="checkbox" class="check" id="WORK" name="tags"
+                                                        value="WORK">
+                                                    <label class="custom-control-label" for="WORK">WORK</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </form>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div> <!-- end masonry-wrap -->
+
+
+
+        </div> <!-- end s-content -->
+
+        <%- include('../partials/footer.ejs') %>
+            <!-- footer end -->
+            <script
+                src="https://cdn.tiny.cloud/1/39i4nzjatfn2tc29obrv4vchzh01xc9yage6hkrv1o3yweka/tinymce/5/tinymce.min.js"
+                referrerpolicy="origin"></script>
+            <script src="../js/textEditor.js"></script>

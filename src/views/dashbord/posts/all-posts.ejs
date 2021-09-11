@@ -1,0 +1,76 @@
+<!-- head area start-->
+<%- include('../../views/partials/head.ejs') %>
+    <!-- head area end -->
+
+    <%- include('../../partials/dashbord-nav.ejs') %>
+        <!-- end s-header -->
+
+        <div class="s-content">
+            <%- include('../../partials/custom-alert.ejs') %>
+
+                <div class="masonry-wrap">
+                    <!-- start masonry-wrap -->
+                    <div class="blog-post">
+                        <h1 class="h2">All Posts
+                        </h1>
+                    </div>
+                    <div class="row add-bottom">
+
+                        <div class="column large-full">
+
+
+                            <div class="table-responsive post-box">
+                                <% if(posts.length===0) { %>
+                                    <h4 style="text-align: center;">There is no post Avalivle right now</h4>
+
+                                    <% } else{ %>
+                                        <%posts.reverse().forEach((post ,item)=> { %>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Title</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>
+                                                            <%=item+1%>
+                                                        </td>
+                                                        <td>
+                                                            <%= post.title.substring(0,27) %>...
+                                                        </td>
+
+
+                                                        <td class="post-buttons"><a
+                                                                href="/post/edit-post/<%= post._id %>  "
+                                                                class="post-edit">EDIT</a>
+                                                            <a href="/post/delete/<%= post._id %> "
+                                                                class="post-delete">DELETE</a>
+                                                        </td>
+
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <% }) %>
+
+                                                <% } %>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div> <!-- end masonry-wrap -->
+
+
+
+        </div> <!-- end s-content -->
+
+        <%- include('../../partials/footer.ejs') %>
+            <!-- footer end -->

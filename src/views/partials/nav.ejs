@@ -1,0 +1,84 @@
+<!-- site header
+        ================================================== -->
+<header class="s-header">
+  <div class="header__top">
+    <div class="header__logo">
+      <a class="site-logo" href="/">
+        <img src="images/logo.svg" alt="Homepage" />
+      </a>
+    </div>
+
+    <div class="header__search">
+      <form role="search" method="GET" class="header__search-form" action="/searchs">
+        <label>
+          <span class="hide-content">Search for:</span>
+          <input type="search" class="header__search-field" placeholder="Type Keywords" value="" name="term"
+            title="Search for:" autocomplete="off" />
+        </label>
+        <input type="submit" class="header__search-submit" value="Search" />
+      </form>
+
+      <a href="#0" title="Close Search" class="header__search-close">Close</a>
+    </div>
+    <!-- end header__search -->
+
+    <!-- toggles -->
+    <a href="#0" class="header__search-trigger"></a>
+    <a href="#0" class="header__menu-toggle"><span>Menu</span></a>
+  </div>
+  <!-- end header__top -->
+
+  <nav class="header__nav-wrap">
+    <ul class="header__nav">
+      <li class="current"><a href="/home" title="">Home</a></li>
+      <li class="has-children">
+        <a href="#0" title="">Categories</a>
+        <ul class="sub-menu">
+          <li><a href="/categories/lifestyle">Lifestyle</a></li>
+          <li><a href="/categories/health">Health</a></li>
+          <li><a href="/categories/family">Family</a></li>
+          <li><a href="/categories/management">Management</a></li>
+          <li><a href="/categories/travel">Travel</a></li>
+          <li><a href="/categories/work">Work</a></li>
+        </ul>
+      </li>
+
+      <li><a href="/about" title="">About</a></li>
+      <li><a href="/contact" title="">Contact</a></li>
+      <% if(isLoggedIn) { %>
+        <li><a href="/dashbord" title="">Dashbord</a></li>
+        <li><a href="/auth/signout" title="">SignOut</a></li>
+
+        <% } else { %>
+          <li><a href="/auth/signup" title="">Sign up</a></li>
+          <li><a href="/auth/signin" title="">Sign in</a></li>
+          <% }%>
+    </ul>
+    <!-- end header__nav -->
+
+    <ul class="header__social">
+      <li class="ss-facebook">
+        <a href="https://facebook.com/">
+          <span class="screen-reader-text">Facebook</span>
+        </a>
+      </li>
+      <li class="ss-twitter">
+        <a href="#0">
+          <span class="screen-reader-text">Twitter</span>
+        </a>
+      </li>
+      <li class="ss-dribbble">
+        <a href="#0">
+          <span class="screen-reader-text">Dribbble</span>
+        </a>
+      </li>
+      <li class="ss-pinterest">
+        <a href="#0">
+          <span class="screen-reader-text">Behance</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- end header__nav-wrap -->
+</header>
+<!-- end s-header -->

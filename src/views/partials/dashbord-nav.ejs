@@ -1,0 +1,67 @@
+<!-- site header
+        ================================================== -->
+<header class="s-header">
+
+    <div class="header__top">
+        <div class="dashbord">
+            <a class="profile" href="index.html">
+                <img src="<%=profile.user.profilePics %>" alt="dashbord">
+                <span>
+                    <%=profile.name %>
+                </span>
+            </a>
+
+        </div>
+
+
+        <!-- toggles -->
+
+        <a href="#0" class="header__menu-toggle"><span>Menu</span></a>
+
+    </div> <!-- end header__top -->
+    <!-- start dashbord nav -->
+    <nav class="header__nav-wrap">
+
+        <ul class="header__nav">
+            <li>
+                <a href="/dashbord" title="">Blog Dashbord</a>
+
+            </li>
+            <li>
+                <a href="/addpost" title="">Add New Post</a>
+
+            </li>
+            <li>
+                <a href="/posts" title="">Posts</a>
+
+            </li>
+            <li>
+                <a href="/dashbord/bookmarks" title="">Bookmarks</a>
+            </li>
+            <li>
+                <a href="/dashbord/comments" title="">Comments</a>
+            </li>
+
+            <li class="has-children">
+                <a href="/dashbord/edit-profile" title="">Profile Setting</a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/auth/change-password" title="">Chang Password</a>
+                    </li>
+                    <li>
+                        <a href="/dashbord/edit-profile" title="">Edit Profile</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li><a href="/auth/signout" title="">Sign Out</a></li>
+
+        </ul> <!-- end header__nav -->
+
+
+
+    </nav> <!-- end header__nav-wrap -->
+
+
+
+</header> <!-- end s-header -->

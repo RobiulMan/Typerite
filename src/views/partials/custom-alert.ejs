@@ -1,0 +1,20 @@
+<div class="column large-6 tab-full">
+    <% if(flashMessage.fail) { %>
+        <div class="alert-box alert-box--error hideit">
+            <%= flashMessage.fail %>
+                <i class="alert-box__close" aria-hidden="true"></i>
+        </div><!-- end error -->
+
+        <% } %>
+
+            <% if(flashMessage.success) { %>
+                <div class="alert-box alert-box--success hideit">
+                    <%= flashMessage.success %>
+
+                        <i class="alert-box__close" aria-hidden="true"></i>
+                </div><!-- end success -->
+
+
+                <% } %>
+
+</div>

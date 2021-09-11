@@ -1,0 +1,161 @@
+<!-- head area start-->
+<%- include('../partials/head.ejs') %>
+    <!-- head area end -->
+    <!-- site header
+        ================================================== -->
+    <%- include('../partials/dashbord-nav.ejs') %>
+        <!-- end s-header -->
+
+        <div class="s-content">
+            <main class="row content__page">
+                <%- include('../partials/custom-alert.ejs') %>
+                    <div class="comments-wrap">
+
+                        <div id="comments" class="column large-12">
+
+                            <h3 class="h2">Recent All Comments</h3>
+                            <ol class="commentlist">
+                                <!-- START commentlist -->
+                                <% if(comments.length===0) {%>
+                                    <p class="no-comment">There is no Commnets</p>
+
+                                    <% }else{ %>
+
+
+                                        <% for(let comment of comments.reverse()){%>
+                                            <li class="depth-1 comment">
+
+                                                <div class="comment__avatar">
+                                                    <img class="avatar" src="<%=comment.user.profilePics %>"
+                                                        alt="profilePics" width="50" height="50">
+                                                </div>
+
+                                                <div class="comment__content">
+                                                    <div class="comment__info">
+                                                        <div class="comment__author">
+
+                                                            On Post <strong>
+                                                                <%=comment.post.title%>
+                                                            </strong>
+
+                                                            <br />
+                                                            BY <a href="/author/<%= comment.user._id%>"></a>
+                                                            <%= comment.user.username%>
+                                                                </a>
+                                                        </div>
+
+                                                        <div class="comment__meta">
+                                                            <div class="comment__time">
+                                                                <%=moment(comment.createdAt)%>
+                                                            </div>
+                                                            <div class="comment__reply">
+                                                                <a class="comment-reply-link">Reply</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="comment__text">
+                                                        <p>
+                                                            <%=comment.body%>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-field">
+                                                    <input name="cName" id="cName" class="full-width field-disable"
+                                                        placeholder="press enter to reply" value="" type="text"
+                                                        data-comment="<%=comment._id%>">
+                                                </div>
+                                                <% if(comment.replies.length> 0) {%>
+                                                    <ul class="children">
+
+                                                        <% for(let reply of comment.replies) {%>
+                                                            <li class="depth-2 comment">
+
+                                                                <div class="comment__avatar">
+                                                                    <img class="avatar"
+                                                                        src="<%= reply.user.profilePics%>" alt=""
+                                                                        width="50" height="50">
+                                                                </div>
+
+                                                                <div class="comment__content">
+
+                                                                    <div class="comment__info">
+                                                                        <div class="comment__author">
+                                                                            <%= reply.user.username%>
+                                                                        </div>
+
+                                                                        <div class="comment__meta">
+                                                                            <div class="comment__time">
+                                                                                <%=moment(reply.createdAt)%>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="comment__text">
+                                                                        <p>
+                                                                            <%=reply.body%>
+                                                                        </p>
+                                                                    </div>
+
+
+                                                                </div>
+
+
+                                                            </li>
+                                                            <%}%>
+
+                                                    </ul>
+                                                    <%}%>
+
+
+
+
+
+                                            </li>
+                                            <%}%>
+
+
+
+                                                <% } %>
+                            </ol>
+
+
+
+
+                            <!-- END commentlist -->
+
+                        </div> <!-- end comments -->
+                        <div class="column large-12 comment-respond" style="display: none;">
+
+                            <!-- START respond -->
+                            <div id="respond">
+
+                                <h3 class="h2">Add A Comment </h3>
+
+                                <form name="" id="contactForm" onsubmit="return false">
+                                    <fieldset>
+                                        <div class="message form-field">
+                                            <textarea name="cMessage" id="cMessage" class="full-width"
+                                                placeholder="Your Message" data-post=""></textarea>
+                                        </div>
+
+                                        <input name="submit" id="submit"
+                                            class="btn btn--primary btn-wide btn--large full-width" value="Add Comment"
+                                            type="submit">
+
+                                    </fieldset>
+                                </form>
+                                <!-- end form -->
+
+                            </div>
+                            <!-- END respond-->
+
+                        </div> <!-- end comment-respond -->
+
+
+                    </div> <!-- end comments-wrap -->
+            </main>
+        </div>
+        <%- include('../partials/footer.ejs') %>
+            <!-- footer end -->

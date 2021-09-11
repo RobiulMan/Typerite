@@ -18,11 +18,10 @@ yarn install
 ```
 
 ## Set ENV file
-before run dev command we need to set .env file in our poject root dir.
-
+before running the dev command we need to set .env file in our project root dir and follow below the syntax to set it into .env file.
 ``` 
-DB_URL= pute in the database url 
-KEY= put in the JWT secret key
+DB_URL=database url
+KEY=JWT secret key
 ```
 
 

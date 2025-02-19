@@ -34,7 +34,7 @@ const signupPostController = async (req, res, next) => {
             await users.save();
 
             req.flash('success', 'User Created Successfully');
-            res.redirect('auth/signin');
+            res.redirect('/signin');
         }
     } catch (err) {
         next(err);

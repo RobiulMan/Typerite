@@ -41,7 +41,7 @@
                                             <div class="entry__meta">
                                                 <span class="entry__meta-cat">
                                                     <% post.tags.forEach(item=> { %>
-                                                        <a href="single-standard.html">
+                                                        <a href="/categories/<%= item.toLowerCase() %>">
                                                             <%= item %>
                                                         </a>
                                                         <% }) %>

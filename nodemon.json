@@ -1,0 +1,15 @@
+{
+  "watch": [
+    "server",
+    "public",
+    "views"
+  ],
+  "ext": "js,html,css,ejs",
+  "ignore": [
+    "*.test.js"
+  ],
+  "delay": "3",
+  "execMap": {
+    "ts": "ts-node"
+  }
+}

@@ -3,13 +3,12 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 1010;
+const PORT = process.env.PORT || 3010;
 
 // database conntection
 const dbConnection = require("./db/dbConnection");
 
 dbConnection();
-
 // Import Middleware
 const setMiddlewares = require("./middleware/middlewares");
 

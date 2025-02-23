@@ -16,10 +16,16 @@
 
                     <div class="media-wrap entry__media">
                         <div class="entry__post-thumb">
-                            <% if(post.thumbnail) { %>
-                                <img src="<%= post.thumbnail%>" alt="post thumbnail">
-                                <% }else{ %>
-                                    <img src="images/thumbs/thumbnail-placeholder600.png" alt="post thumbnail">
+                            <% console.log(firstImageParagraph) %>
+                            <% if(firstImageParagraph !== null) { %>
+                                
+                                <%- firstImageParagraph%>
+                                
+                                <% }else if(post.thumbnail){ %>
+
+                                    <img src="<%= post.thumbnail%>" alt="post thumbnail">
+                                    <% }else { %>
+                                        <img src="images/thumbs/thumbnail-placeholder600.png" alt="post thumbnail">
                                     <% } %>
                         </div>
                     </div>
@@ -39,7 +45,7 @@
                                 <div class="entry__meta">
                                     <span class="entry__meta-cat">
                                         <% post.tags.forEach(item=> { %>
-                                            <a href="single-standard.html">
+                                            <a href="/categories/<%= item%>">
                                                 <%= item %>
                                             </a>
                                             <% }) %>
@@ -53,103 +59,24 @@
 
                     <div class="entry__content">
 
-                        <p class="lead drop-cap">
-                            Duis ex ad cupidatat tempor Excepteur cillum cupidatat
-                            fugiat nostrud cupidatat dolor sunt sint sit nisi est eu exercitation
-                            incididunt adipisicing veniam velit id fugiat enim mollit amet anim veniam dolor
-                            dolor irure velit commodo cillum sit nulla ullamco magna amet magna cupidatat qui
-                            labore cillum sit in tempor veniam consequat non laborum adipisicing aliqua
-                            ea nisi sint.
-                        </p>
+                    
 
 
                         <%- post.body%>
-                            <p>
-                                <img src="images/wheel-1000.jpg" srcset="images/wheel-2000.jpg 2000w, 
-                                     images/wheel-1000.jpg 1000w, 
-                                     images/wheel-500.jpg 500w" sizes="(max-width: 2000px) 100vw, 2000px" alt="">
-                            </p>
+                        
+                          
 
-                            <h2>Large Heading</h2>
-
-                            <p>
-                                Harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum
-                                soluta nobis est eligendi optio cumque nihil impedit quo minus
-                                <a href="http://#">omnis voluptas assumenda est</a> id quod maxime placeat
-                                facere possimus, omnis dolor repellendus. Temporibus autem quibusdam et aut
-                                officiis debitis aut rerum necessitatibus saepe eveniet ut et.
-                            </p>
-
-                            <blockquote>
-                                <p>
-                                    For God so loved the world, that he gave his only Son, that whoever believes in
-                                    him should not perish but have eternal life. For God did not send his Son into
-                                    the world to condemn the world, but in order that the world might be
-                                    saved through him.
-                                </p>
-                                <cite>John 3:16-17 ESV</cite>
-                            </blockquote>
-
-                            <p>
-                                Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-                                corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                                similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
-                                venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim
-                                cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing
-                                in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
-                            </p>
-
-                            <h3>Smaller Heading</h3>
-
-                            <p>
-                                Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-                                corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                                similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
-                                venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim
-                                cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing
-                                in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
-                            </p>
-
-                            <p>
-                                Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-                                corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                                similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
-                                venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim
-                                cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing
-                                in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
-                            </p>
-
-                            <ul>
-                                <li>Donec nulla non metus auctor fringilla.
-                                    <ul>
-                                        <li>Lorem ipsum dolor sit amet.</li>
-                                        <li>Lorem ipsum dolor sit amet.</li>
-                                        <li>Lorem ipsum dolor sit amet.</li>
-                                    </ul>
-                                </li>
-                                <li>Donec nulla non metus auctor fringilla.</li>
-                                <li>Donec nulla non metus auctor fringilla.</li>
-                            </ul>
-
-                            <p>
-                                Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-                                corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                                similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam
-                                venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim
-                                cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing
-                                in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
-                            </p>
                             <p class="entry__tags" style="margin-top: 1em;">
                                 <span class="entry__tag-list">
                                     <% if(user) { %>
                                         <%if(post.likes.includes(user._id)) {%>
-                                            <a class="cursor active" id="likebtn" data-post="<%= post._id%>"><i
+                                            <a  class="cursor active" id="likebtn" data-post="<%= post._id%>"><i
                                                     class="far fa-thumbs-up"></i> like
                                                 <%=post.likes.length %>
                                             </a>
 
                                             <% }else{%>
-                                                <a class="cursor" id="likebtn" data-post="<%= post._id%>"><i
+                                                <a  class="cursor" id="likebtn" data-post="<%= post._id%>"><i
                                                         class="far fa-thumbs-up"></i> like
                                                     <%=post.likes.length %>
                                                 </a>
@@ -160,9 +87,9 @@
                                                                 class="far fa-thumbs-down"></i>
                                                             dislike
                                                             <%=post.dislikes.length %>
-                                                        </a>
+                                                    </a>
                                                         <% }else{ %>
-                                                            <a class="cursor" id="dislikebtn"
+                                                            <a  class="cursor" id="dislikebtn"
                                                                 data-post="<%= post._id%>"><i
                                                                     class="far fa-thumbs-down"></i> dislike
                                                                 <%=post.dislikes.length %>

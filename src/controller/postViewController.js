@@ -1,4 +1,5 @@
 /* eslint-disable default-case */
+const cheerio = require('cheerio');
 const moment = require('moment');
 const mongoose = require('mongoose');
 const Flash = require('../utils/Flash');
@@ -83,12 +84,35 @@ const singlePageGetController = async (req, res, next) => {
                         bookmarks = profile.bookmarks;
                     }
                 }
+                const $ = cheerio.load(post.body); // Load HTML content
 
+                const firstImageParagraph = $("p:has(img)").first().prop("outerHTML"); // Get first <p> with <img>
                 res.render('singlepages/single-pages', {
                     flashMessage: Flash.getMessage(req),
                     post,
-                    bookmarks
+                    bookmarks,
+                    firstImageParagraph: firstImageParagraph || null
+
                 });
+            //  if(firstImageParagraph !== undefined){
+            //      res.render('singlepages/single-pages', {
+            //         flashMessage: Flash.getMessage(req),
+            //         post,
+            //         bookmarks,
+            //         firstImageParagraph
+
+            //     });
+            //  }else{
+           
+            //     res.render('singlepages/single-pages', {
+            //         flashMessage: Flash.getMessage(req),
+            //         post,
+            //         bookmarks,
+    
+            //     });
+            //  }
+              
+                
             }
         } catch (err) {
             //

@@ -1,4 +1,5 @@
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
+
     const bookmarks = document.querySelectorAll('.bookmark-btn');
     [...bookmarks].forEach((item) => {
         item.addEventListener('click', (event) => {
@@ -31,7 +32,5 @@ window.onload = function () {
             event.stopPropagation();
         });
     });
-};
-/**
-
- */
+  
+})

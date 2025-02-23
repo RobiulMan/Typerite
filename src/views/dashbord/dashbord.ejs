@@ -69,7 +69,7 @@
                 <% for (let post of posts.reverse()) {%>
                   <article class="masonry__brick entry format-standard animate-this">
                     <div class="entry__thumb">
-                      <a href="/search/<%= post._id %> " class="entry__thumb-link">
+                      <a href="/post-view/<%= post._id %> " class="entry__thumb-link">
                         <% if(!post.thumbnail) {%>
                           <img src="images/thumbs/thumbnail-placeholder600.png" alt="post thumbnail">
 
@@ -82,7 +82,7 @@
                     <div class="entry__text">
                       <div class="entry__header">
                         <h2 class="entry__title">
-                          <a href="/search/<%= post._id %> ">
+                          <a href="/post-view/<%= post._id %> ">
                             <%= post.title %>
                           </a>
                         </h2>

@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  #######################################
+  # MongoDB: The database service
+  #######################################
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    networks:
+      - mongo-net
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017" # Expose MongoDB on localhost:27017
+    volumes:
+      - mongo_data:/data/db # Persistent storage for MongoDB data
+
+  #######################################
+  # Mongo Express: Web-based MongoDB client
+  #######################################
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    restart: always
+    networks:
+      - mongo-net
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_SERVER: mongodb # Hostname of the MongoDB service
+      ME_CONFIG_BASICAUTH_USERNAME: admin # Optional: Basic auth username for Mongo Express
+      ME_CONFIG_BASICAUTH_PASSWORD: password # Optional: Basic auth password for Mongo Express
+    ports:
+      - "8081:8081" # Access Mongo Express on localhost:8081
+    depends_on:
+      - mongodb
+
+volumes:
+  mongo_data: # Volume to persist MongoDB data
+
+networks:
+  mongo-net:
+    name: mongo-net
+    driver: bridge

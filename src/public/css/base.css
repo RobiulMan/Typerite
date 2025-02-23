@@ -1286,3 +1286,15 @@ textarea {
 }
 
 /*# sourceMappingURL=base.css.map */
+.masonry .entry__meta a {
+  background: rgb(229, 253, 227);
+  color: #000000;
+  display: inline-block;
+  font-weight: 400;
+  line-height: inherit;
+  border-radius: 3px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  padding: 1px 12px;
+  border: 1px solid transparent;
+}

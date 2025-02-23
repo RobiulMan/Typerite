@@ -9,73 +9,103 @@
     <div class="s-content">
 
       <div class="masonry-wrap">
-        <div class="masonry">
+        <div class="masonrys">
           <div class="grid-sizer"></div>
           <% if(posts.length===0) {%>
-            <p>There is nothing show</p>
+
+            <div class="hero-secton">
+              <h1> Create your first blog post.</h1>
+              <div class="entry__post-thumb">
+                <img src="upload/hero-image.png" alt="hearo thumbnail">
+              </div>
+            </div>
+
+
             <%} else{%>
-              <% for (let post of posts) {%>
-                <article class="masonry__brick entry format-standard animate-this">
-                  <div class="entry__thumb">
-                    <a href="/post-view/<%= post._id %> " class="entry__thumb-link">
-                      <% if(!post.thumbnail) {%>
-                        <img src="images/thumbs/thumbnail-placeholder600.png" alt="post thumbnail">
+         
 
-                        <% } else{%>
-                          <img src="<%= post.thumbnail %>" srcset="" alt="" />
-                          <% } %>
-                    </a>
-                  </div>
 
-                  <div class="entry__text">
-                    <div class="entry__header">
-                      <h2 class="entry__title">
-                        <a href="/post-view/<%= post._id %> ">
-                          <%= post.title %>
-                        </a>
-                      </h2>
-                      <div class="entry__meta">
-                        <span class="entry__meta-cat">
-                          <% post.tags.forEach(item=> { %>
-                            <a href="single-standard.html">
-                              <%= item %>
-                            </a>
-                            <% }) %>
-                        </span>
-                        <span class="entry__meta-date">
-                          <a href="single-standard.html">
-                            <%= moment(post.createdAt)%>
-                          </a>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="entry__excerpt">
-                      <p>
-                        <%= truncate(post.body) %>
-                      </p>
-                      <% if(user) { %>
-                        <p class="entry__tags" style="margin-top: 1em;">
-                          <span class="entry__tag-list">
+                <div class="masonry-wrap">
+                  <%if(posts.length===0) {%>
+                    <p>No Post are avalile in this category</p>
+                    <%} else {%>
+                      <div class="masonry">
+                        <div class="grid-sizer"></div>
 
-                            <% if(bookmarks.includes(post._id)) { %>
-                              <a class="bookmark-btn active" data-post="<%= post._id%>">
-                                <i class="far fa-bookmark"></i>
+                        <% for (let post of posts.reverse()) {%>
+                          <article class="masonry__brick entry format-standard animate-this">
+                            <div class="entry__thumb">
+                              <a href="/post-view/<%= post._id %> " class="entry__thumb-link">
+                                <% if(!post.thumbnail) {%>
+                                  <img src="images/thumbs/thumbnail-placeholder600.png" alt="post thumbnail">
+
+                                  <% } else{%>
+                                    <img src="<%= post.thumbnail %>" srcset="" alt="" />
+                                    <% } %>
                               </a>
-                              <% }else{ %>
-                                <a class="bookmark-btn" data-post="<%= post._id%>">
-                                  <i class="far fa-bookmark"></i>
-                                </a>
-                                <% } %>
+                            </div>
 
-                          </span>
-                        </p>
-                        <% } %>
-                    </div>
-                  </div>
-                </article>
-                <!-- end article -->
+                            <div class="entry__text">
+                              <div class="entry__header">
+                                <h2 class="entry__title">
+                                  <a href="/post-view/<%= post._id %> ">
+                                    <%= post.title %>
+                                  </a>
+                                </h2>
+                                <div class="entry__meta">
+                                  <span class="entry__meta-cat">
+                                    <% post.tags.forEach(item=> { %>
+                                      <a href="/categories/<%= item.toLowerCase() %>">
+                                        <%= item %>
+                                      </a>
+                                      <% }) %>
+                                  </span>
+                                  <span class="entry__meta-date">
+                                    <a href="single-standard.html">
+                                      <%= moment(post.createdAt)%>
+                                    </a>
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="entry__excerpt">
+                                <p>
+                                  <%= truncate(post.body) %>
+                                </p>
+                                <% if(user) { %>
+                                  <p class="entry__tags" style="margin-top: 1em;">
+                                    <span class="entry__tag-list">
 
-                <% } %>
+                                      <% if(bookmarks.includes(post._id)) { %>
+                                        <a class="bookmark-btn active" data-post="<%= post._id%>">
+                                          <i class="far fa-bookmark"></i>
+                                        </a>
+                                        <% }else{ %>
+                                          <a class="bookmark-btn" data-post="<%= post._id%>">
+                                            <i class="far fa-bookmark"></i>
+                                          </a>
+                                          <% } %>
+
+                                    </span>
+                                  </p>
+                                  <% } %>
+                              </div>
+                            </div>
+                          </article>
+                          <!-- end article -->
+
+                          <% } %>
+
+
+
+
+
+
+                      </div>
+                      <%}%>
+                        <!-- end masonry -->
+                </div>
+
+           
 
                   <%}%>
 

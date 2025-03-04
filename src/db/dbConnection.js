@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config(); // Load .env file only in development
+}
 
 console.log("process env", process.env.DB_URI);
 const uri = process.env.DB_URI || "mongodb://localhost:27017/mydatabas";

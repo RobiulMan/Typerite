@@ -4,7 +4,7 @@ const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3010;
-
+console.log("env key", process.env.KEY);
 // database conntection
 const dbConnection = require("./db/dbConnection");
 
